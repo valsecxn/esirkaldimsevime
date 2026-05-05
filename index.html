@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki doğdun Sevim ♡</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:  #c0392b;
+    --rose-light: #e57373;
+    --rose-pale:  #fce4ec;
+    --dark:  #0a0505;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--dark);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  #particles {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+  }
+  .particle {
+    position: absolute; border-radius: 50%;
+    animation: particleFall linear infinite; opacity: 0;
+  }
+  @keyframes particleFall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 20px 200px;
+  }
+
+  .hero-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background: url('sevim_bg.jpg') center center / cover no-repeat;
+    filter: brightness(0.2) grayscale(0.3);
+  }
+
+  .hero-overlay {
+    position: fixed; inset: 0; z-index: 1;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(192,57,43,0.18) 0%, transparent 60%),
+      linear-gradient(to bottom, rgba(10,5,5,0.6) 0%, transparent 25%, transparent 65%, rgba(10,5,5,0.95) 100%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 5;
+    animation: fadeUp 1.4s ease both;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    border: 1px solid rgba(192,57,43,0.4);
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(4px);
+    background: rgba(192,57,43,0.08);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(3rem, 14vw, 7rem);
+    color: #fff;
+    text-shadow: 0 0 80px rgba(192,57,43,0.4), 0 2px 30px rgba(0,0,0,0.8);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .hero .heart-big {
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: var(--rose);
+    display: block;
+    animation: heartbeat 1.8s ease-in-out infinite;
+    margin: 10px 0;
+  }
+
+  .divider {
+    width: 100px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    margin: 20px auto;
+  }
+
+  .hero .tagline {
+    font-size: clamp(0.95rem, 3vw, 1.3rem);
+    color: rgba(255,200,200,0.65);
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  /* Countdown */
+  .countdown-wrap {
+    position: relative; z-index: 5;
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .countdown-box {
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 14px;
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 70px;
+    backdrop-filter: blur(8px);
+  }
+  .countdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    display: block;
+    line-height: 1;
+  }
+  .countdown-label {
+    font-size: 0.62rem;
+    color: rgba(229,115,115,0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+  .birthday-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    color: var(--rose-light);
+    text-align: center;
+    padding: 20px;
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .gallery-section {
+    position: relative; z-index: 5;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, transparent, rgba(10,5,5,0.98) 10%);
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .section-sub {
+    text-align: center;
+    color: rgba(229,115,115,0.5);
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto 60px;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    border: 1px solid rgba(192,57,43,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba(192,57,43,0.3);
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.88) saturate(0.9);
+    transition: filter 0.3s;
+  }
+  .gallery-item:hover img { filter: brightness(1) saturate(1.1); }
+  .gallery-item.featured {
+    grid-column: 1 / -1;
+    aspect-ratio: 3/2;
+  }
+
+  .message-section {
+    position: relative; z-index: 5;
+    padding: 20px 30px 200px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .message-card {
+    background: rgba(20,8,8,0.7);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 20px;
+    padding: 36px 28px;
+    backdrop-filter: blur(16px);
+  }
+
+  .message-card .msg-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .message-card p {
+    color: rgba(255,220,220,0.8);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  .message-card .sig {
+    margin-top: 20px;
+    color: var(--rose-light);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+  }
+
+  .player-wrap {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 24px;
+  }
+
+  .player {
+    background: rgba(10,5,5,0.92);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 20px;
+    padding: 14px 20px;
+    width: min(420px, 96vw);
+    backdrop-filter: blur(28px);
+    box-shadow: 0 -4px 40px rgba(0,0,0,0.5);
+  }
+
+  .player-top {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .album-thumb {
+    width: 48px; height: 48px;
+    border-radius: 10px; object-fit: cover; flex-shrink: 0;
+    border: 1px solid rgba(192,57,43,0.3);
+    filter: brightness(0.85) saturate(0.8);
+  }
+  .track-name { color: #fff; font-size: 0.92rem; font-weight: 500; }
+  .track-sub  { color: rgba(229,115,115,0.45); font-size: 0.7rem; margin-top: 2px; }
+
+  .progress-wrap {
+    background: rgba(255,255,255,0.08); border-radius: 3px; height: 3px; cursor: pointer; margin-bottom: 5px;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--rose-light));
+    width: 0%; transition: width 0.4s linear; position: relative;
+  }
+  .progress-fill::after {
+    content:''; position:absolute; right:-5px; top:-4px;
+    width:11px; height:11px; background: var(--rose-pale); border-radius:50%;
+    box-shadow: 0 0 8px rgba(192,57,43,0.6);
+  }
+
+  .time-row {
+    display:flex; justify-content:space-between;
+    color: rgba(229,115,115,0.3); font-size:0.68rem; margin-bottom:12px;
+  }
+
+  .controls {
+    display:flex; align-items:center; justify-content:center; gap:26px;
+  }
+  .ctrl-btn {
+    background:none; border:none; color:rgba(229,115,115,0.4);
+    font-size:1rem; cursor:pointer; transition: color .2s, transform .15s;
+  }
+  .ctrl-btn:hover { color:#fff; transform:scale(1.15); }
+  .ctrl-btn.play-btn {
+    width:44px; height:44px;
+    background: linear-gradient(135deg, var(--rose), var(--rose-light));
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:1rem;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.45);
+  }
+  .ctrl-btn.play-btn:hover { transform:scale(1.1); }
+
+  .player-footer {
+    text-align:center; margin-top:10px;
+    color:rgba(192,57,43,0.25); font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
+  }
+
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 92vw; max-height: 85vh;
+    border-radius: 12px; object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    color: rgba(255,255,255,0.6); font-size: 2rem; cursor: pointer; background: none; border: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">♡ İyi ki doğdun ♡</div>
+    <h1>Sevim</h1>
+    <span class="heart-big">♥</span>
+    <div class="divider"></div>
+    <p class="tagline">8 Mayıs — Senin günün 🌹</p>
+    <div class="countdown-wrap" id="countdownWrap"></div>
+  </div>
+</div>
+
+<div class="gallery-section">
+  <h2 class="section-title">Sen</h2>
+  <p class="section-sub">her karede güzelsin</p>
+  <div class="gallery-grid">
+    <div class="gallery-item featured" onclick="openLightbox('sevim3.jpg')">
+      <img src="sevim3.jpg" alt="">
+    </div>
+    <div class="gallery-item" onclick="openLightbox('sevim1.jpg')">
+      <img src="sevim1.jpg" alt="">
+    </div>
+    <div class="gallery-item" onclick="openLightbox('sevim2.jpg')">
+      <img src="sevim2.jpg" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="message-section">
+  <div class="message-card">
+    <span class="msg-icon">🌹</span>
+    <p>
+      Bugün senin günün Sevim.<br>
+      İyi ki bu dünyaya geldin,<br>
+      iyi ki varsın.<br><br>
+      Hep güzel şeyler görmeni,<br>
+      hep mutlu olmanı diliyorum.<br>
+      Doğum günün kutlu olsun. 🌹
+    </p>
+    <p class="sig">— ♡ —</p>
+  </div>
+</div>
+
+<div class="player-wrap">
+  <div class="player">
+    <div class="player-top">
+      <img class="album-thumb" src="sevim3.jpg" alt="">
+      <div>
+        <div class="track-name">Ama Birlikte</div>
+        <div class="track-sub">♪ Seco — Sevim için ♡</div>
+      </div>
+    </div>
+    <div class="progress-wrap" id="progressBar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="time-row">
+      <span id="currentTime">00:03</span>
+      <span id="totalTime">--:--</span>
+    </div>
+    <div class="controls">
+      <button class="ctrl-btn" onclick="seekBack()">&#9664;&#9664;</button>
+      <button class="ctrl-btn play-btn" id="playBtn" onclick="togglePlay()">&#9654;</button>
+      <button class="ctrl-btn" onclick="seekForward()">&#9654;&#9654;</button>
+    </div>
+    <div class="player-footer">♡ mutlu yıllar sevim ♡</div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<audio id="audio" src="sevim_music.mp3"></audio>
+
+<script>
+// ── Countdown ────────────────────────────────────────────────
+function updateCountdown() {
+  const now = new Date();
+  const year = now.getFullYear();
+  let bday = new Date(year, 4, 8); // May 8
+  if (now > bday) bday = new Date(year + 1, 4, 8);
+
+  const diff = bday - now;
+  const isToday = now.getMonth() === 4 && now.getDate() === 8;
+
+  const wrap = document.getElementById('countdownWrap');
+
+  if (isToday) {
+    wrap.innerHTML = '<div class="birthday-msg">🎉 Bugün senin günün Sevim! 🎉</div>';
+    return;
+  }
+
+  const days  = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const secs  = Math.floor((diff % (1000*60)) / 1000);
+
+  wrap.innerHTML = `
+    <div class="countdown-box"><span class="countdown-num">${days}</span><span class="countdown-label">Gün</span></div>
+    <div class="countdown-box"><span class="countdown-num">${hours}</span><span class="countdown-label">Saat</span></div>
+    <div class="countdown-box"><span class="countdown-num">${mins}</span><span class="countdown-label">Dakika</span></div>
+    <div class="countdown-box"><span class="countdown-num">${secs}</span><span class="countdown-label">Saniye</span></div>
+  `;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Particles ────────────────────────────────────────────────
+const pContainer = document.getElementById('particles');
+let pSeed = 7;
+function pRand() {
+  pSeed = (pSeed * 1664525 + 1013904223) & 0xffffffff;
+  return (pSeed >>> 0) / 0xffffffff;
+}
+const colors = ['rgba(192,57,43,0.55)','rgba(229,115,115,0.4)','rgba(252,228,236,0.3)','rgba(255,255,255,0.2)'];
+function spawnParticle() {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = 3 + pRand() * 6;
+  p.style.cssText = `left:${pRand()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(pRand()*colors.length)]};animation-duration:${7+pRand()*10}s;animation-delay:${pRand()*5}s;`;
+  pContainer.appendChild(p);
+  setTimeout(() => p.remove(), 16000);
+}
+for (let i = 0; i < 20; i++) spawnParticle();
+setInterval(spawnParticle, 600);
+
+// ── Lightbox ─────────────────────────────────────────────────
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+// ── Audio ────────────────────────────────────────────────────
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const progressFill = document.getElementById('progressFill');
+const currentTimeEl = document.getElementById('currentTime');
+const totalTimeEl = document.getElementById('totalTime');
+const START_TIME = 3;
+
+audio.addEventListener('loadedmetadata', () => {
+  audio.currentTime = START_TIME;
+  totalTimeEl.textContent = fmt(audio.duration);
+});
+
+window.addEventListener('load', () => {
+  audio.currentTime = START_TIME;
+  audio.play().then(() => { playBtn.innerHTML = '&#9646;&#9646;'; }).catch(() => {});
+  document.addEventListener('click', () => {
+    if (audio.paused) audio.play().then(() => { playBtn.innerHTML = '&#9646;&#9646;'; });
+  }, { once: true });
+});
+
+function togglePlay() {
+  if (audio.paused) { audio.play(); playBtn.innerHTML = '&#9646;&#9646;'; }
+  else              { audio.pause(); playBtn.innerHTML = '&#9654;'; }
+}
+function seekBack()    { audio.currentTime = Math.max(START_TIME, audio.currentTime - 10); }
+function seekForward() { audio.currentTime = Math.min(audio.duration||999, audio.currentTime + 10); }
+
+audio.addEventListener('timeupdate', () => {
+  const t = audio.currentTime, d = audio.duration || 1;
+  progressFill.style.width = (t/d*100) + '%';
+  currentTimeEl.textContent = fmt(t);
+  if (audio.duration) totalTimeEl.textContent = fmt(audio.duration);
+});
+
+function fmt(s) {
+  return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+}
+
+document.getElementById('progressBar').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  audio.currentTime = ((e.clientX-r.left)/r.width) * (audio.duration||0);
+});
+</script>
+</body>
+</html>
